@@ -7,11 +7,11 @@ export class BoardBuilder {
         this.board = {
             bush:5,
             size: 10,
-            bushes: [],
-            players: []
+           
+            elements: []
         }
         const map : Array<number[]> = [
-            [9,0,0,0,0,0,0,0,0,9],
+            [1,0,0,0,0,0,0,0,0,1],
             [0,0,0,0,0,0,5,0,0,0],
             [0,5,0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,0,0,0],
@@ -20,17 +20,13 @@ export class BoardBuilder {
             [0,0,0,0,0,0,0,0,5,0],
             [0,0,5,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,5,0,0],
-            [9,0,0,0,0,0,0,0,0,9]
+            [1,0,0,0,0,0,0,0,0,1]
         ]
+        
         for(let i = 0; i < this.board.size; i++)
             for(let j = 0; j < this.board.size; j++)
-                if(map[i][j] === 5) {
-                    this.board.bushes.push({x : i, y : j})
-                }
-        for(let i = 0; i < this.board.size; i++)
-            for(let j = 0; j < this.board.size; j++)
-                if(map[i][j] === 9) {
-                    this.board.players.push({x : i, y : j})
+                if(map[i][j] !== 0) {
+                    this.board.elements.push({x : i, y : j , type : map[i][j]})
                 }
     }
 

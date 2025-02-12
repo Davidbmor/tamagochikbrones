@@ -9,8 +9,10 @@ UIv1.initUI = () => {
 
 UIv1.drawBoard = (board) => {
 
+    console.log("dsadasd");
     console.log(board);
     if (board !== undefined) {
+        console.log(board);
         const base = document.getElementById(UIv1.uiElements.board);
         base.innerHTML = '';
         
@@ -20,7 +22,7 @@ UIv1.drawBoard = (board) => {
             const tile = document.createElement("div");
             tile.classList.add("tile");
             if (element === 5) tile.classList.add("bush");
-            if (element === 9) tile.classList.add("player");
+            if (element === 1) tile.classList.add("player");
             base.appendChild(tile);
             anime({
                 targets: tile,

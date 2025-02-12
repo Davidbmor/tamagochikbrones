@@ -22,8 +22,6 @@ export class GameService {
     }
 
     public buildPlayer(socket: Socket): Player {
-       
-       
         return {
             id: socket,
             x: 0,

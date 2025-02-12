@@ -1,5 +1,6 @@
 export const ELEMENTS = {
     bush : 5,
+    players : 1,
 };
 export class Board {
     #map = null;
@@ -14,9 +15,15 @@ export class Board {
     }
 
     build(payload) {
+        console.log("Board build");
+        console.log(payload);
         const { size, elements } = payload;
         this.#map = new Array(size).fill().map(() => new Array(size).fill(0));
-        elements.forEach(element=> this.#map[element.x][element.y]= ELEMENTS.bush);
+        elements.forEach(element => {
+            if (element.type === ELEMENTS.bush) this.#map[element.x][element.y] = ELEMENTS.bush;
+            else if (element.type === ELEMENTS.players)  this.#map[element.x][element.y] = ELEMENTS.players;
+            
+        });
         this.#state = this.#states.BUILD;
     }
 
