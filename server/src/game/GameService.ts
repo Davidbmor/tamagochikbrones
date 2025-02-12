@@ -1,6 +1,6 @@
 import { Socket } from "socket.io";
 import { Directions, Player, PlayerStates } from "../player/entities/Player";
-import { Room } from "../room/entities/Room";
+import { Room, RoomConfig } from "../room/entities/Room";
 import { RoomService } from "../room/RoomService";
 import { Game, GameStates, Messages } from "./entities/Game";
 import { BoardBuilder } from "./BoardBuilder";
@@ -34,10 +34,20 @@ export class GameService {
 
     public addPlayer(player: Player): boolean {
         const room: Room = RoomService.getInstance().addPlayer(player);
-        //ServerService.getInstance().sendMessage(room.name,ServerService.messages.out.new_player,"new player");
-        ServerService.getInstance().sendMessage(room.name, Messages.NEW_PLAYER, "new player");
+        //Envio la informacion de cada jugador al servidor 
+        ServerService.getInstance().sendMessage(room.name, Messages.NEW_PLAYER,
+            {
+                id: player.id.id,
+                x: player.x,
+                y: player.y,
+                state: player.state,
+                direction: player.direction,
+                visibility: player.visibility
+            }
+         );
+        
         const genRanHex = (size: Number) => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
-        if (room.players.length == 1) {
+        if (room.players.length == RoomConfig.maxRoomPlayers) {
             const game: Game = {
                 id: "game" + genRanHex(128),
                 state: GameStates.WAITING,
@@ -48,11 +58,16 @@ export class GameService {
             this.games.push(game);
         }
 
+        
+
+
         if (room.occupied) {
             if (room.game) {
                 room.game.state = GameStates.PLAYING;
                 if (ServerService.getInstance().isActive()) {
                     ServerService.getInstance().sendMessage(room.name, Messages.BOARD, room.game.board);
+                    ServerService.getInstance().sendMessage(room.name, "SHOW_BUTTONS", {}); // Asegúrate de que esta línea se está ejecutando
+                
                 }
             }
             return true;

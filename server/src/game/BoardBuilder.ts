@@ -7,6 +7,8 @@ export class BoardBuilder {
         this.board = {
             bush:5,
             size: 10,
+            
+            
            
             elements: []
         }
@@ -33,4 +35,6 @@ export class BoardBuilder {
     public getBoard() : Board {
         return this.board;
     }
+
+    
 }

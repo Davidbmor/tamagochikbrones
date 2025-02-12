@@ -34,5 +34,34 @@ UIv1.drawBoard = (board) => {
     }
 }
 
+UIv1.showButtons = () => {
+    const base = document.getElementById("buttons-container");
+    const buttonsContainer = document.createElement("div");
+    buttonsContainer.classList.add("buttons-container");
+
+    const rotateButton = document.createElement("button");
+    rotateButton.innerText = "Girar";
+    rotateButton.onclick = () => {
+        // Lógica para girar
+    };
+
+    const moveButton = document.createElement("button");
+    moveButton.innerText = "Avanzar";
+    moveButton.onclick = () => {
+        // Lógica para avanzar
+    };
+
+    const killButton = document.createElement("button");
+    killButton.innerText = "Matar";
+    killButton.onclick = () => {
+        // Lógica para matar
+    };
+
+    buttonsContainer.appendChild(rotateButton);
+    buttonsContainer.appendChild(moveButton);
+    buttonsContainer.appendChild(killButton);
+    base.appendChild(buttonsContainer);
+}
+
 UIv1.drawBoard();
 

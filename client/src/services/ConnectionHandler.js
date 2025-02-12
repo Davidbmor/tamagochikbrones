@@ -26,7 +26,7 @@ export const ConnectionHandler = {
             });
             socket.on("message", (payload) => {
                 ConnectionHandler.controller.actionController(payload);
-                //socket.emit("message",{ type: "HELLO", content: "Hello world!"});
+      
             })
             socket.on("disconnect", () => {
                 ConnectionHandler.connected = false;
