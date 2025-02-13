@@ -42,19 +42,19 @@ UIv1.showButtons = () => {
     const rotateButton = document.createElement("button");
     rotateButton.innerText = "Girar";
     rotateButton.onclick = () => {
-        // Lógica para girar
+     
     };
 
     const moveButton = document.createElement("button");
     moveButton.innerText = "Avanzar";
     moveButton.onclick = () => {
-        // Lógica para avanzar
+        
     };
 
     const killButton = document.createElement("button");
     killButton.innerText = "Matar";
     killButton.onclick = () => {
-        // Lógica para matar
+        
     };
 
     buttonsContainer.appendChild(rotateButton);

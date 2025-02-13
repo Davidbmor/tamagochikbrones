@@ -11,24 +11,37 @@ export class Board {
     }
     #state = null;
     #corners = [];
+    #players = [];
 
     constructor() {
         this.#state = this.#states.NO_BUILD;
     }
 
-    build(payload) {
-        console.log("Board build");
-        console.log(payload);
+    build(payload , players) {
+        
         const { size, elements } = payload;
         this.#map = new Array(size).fill().map(() => new Array(size).fill(0));
         elements.forEach(element => {
             if (element.type === ELEMENTS.bush) this.#map[element.x][element.y] = ELEMENTS.bush;
             else if (element.type === ELEMENTS.players) {
                 this.#map[element.x][element.y] = ELEMENTS.players;
-                this.#corners.push({ x: element.x, y: element.y }); 
+                this.#corners.push({ x: element.x, y: element.y });
+                }
+        });
+        this.#state = this.#states.BUILD;       
+    }
+
+    assingPlayerPosition(players) {
+     
+        const availableCorners = [...this.#corners];
+        players.forEach(jugadores => {
+            if (availableCorners.length > 0) {
+                const randomIndex = Math.floor(Math.random() * availableCorners.length);
+                const corner = availableCorners.splice(randomIndex, 1)[0];
+                jugadores.x = corner.x;
+                jugadores.y = corner.y;
             }
         });
-        this.#state = this.#states.BUILD;
     }
 
     get map() {

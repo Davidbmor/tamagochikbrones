@@ -7,9 +7,6 @@ export class BoardBuilder {
         this.board = {
             bush:5,
             size: 10,
-            
-            
-           
             elements: []
         }
         const map : Array<number[]> = [

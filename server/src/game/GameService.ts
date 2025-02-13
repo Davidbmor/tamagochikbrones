@@ -33,11 +33,14 @@ export class GameService {
     }
 
     public addPlayer(player: Player): boolean {
+        const genRanHex = (size: Number) => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
+
         const room: Room = RoomService.getInstance().addPlayer(player);
         //Envio la informacion de cada jugador al servidor 
+
         ServerService.getInstance().sendMessage(room.name, Messages.NEW_PLAYER,
             {
-                id: player.id.id,
+                id: "player" + genRanHex(20),
                 x: player.x,
                 y: player.y,
                 state: player.state,
@@ -45,8 +48,9 @@ export class GameService {
                 visibility: player.visibility
             }
          );
+         
+         
         
-        const genRanHex = (size: Number) => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
         if (room.players.length == RoomConfig.maxRoomPlayers) {
             const game: Game = {
                 id: "game" + genRanHex(128),
