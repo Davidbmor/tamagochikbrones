@@ -234,28 +234,32 @@ export const ConnectionHandler = {
 
 
 ## Objetivos logrados 
-•  Implementación de un tablero de tamaño NxN correctamente generado.
-•  Configuración inicial de los jugadores en las esquinas del tablero.
-•  Configuración del servidor para manejar conexiones de clientes vía WebSockets.
-•  Envío y recepción de mensajes de manera eficiente entre cliente y servidor.
-•  Diseño de una interfaz intuitiva para la interacción del jugador.
-•  Representación visual dinámica del tablero y los jugadores según datos del servidor.
-•  Adaptabilidad del cliente a posibles rediseños o mejoras futuras
-•  Implementación de salas para gestionar partidas independientes.
-•  Uso adecuado de clases, objetos JSON y patrones de diseño.
-•  Código modular y bien estructurado que facilite la escalabilidad. 
+
+| Objetivo                                                                 | Estado     |
+|--------------------------------------------------------------------------|------------|
+| Implementación de un tablero de tamaño NxN correctamente generado.       | Logrado    |
+| Configuración inicial de los jugadores en las esquinas del tablero.      | Logrado    |
+| Configuración del servidor para manejar conexiones de clientes vía WebSockets. | Logrado    |
+| Envío y recepción de mensajes de manera eficiente entre cliente y servidor. | Logrado    |
+| Diseño de una interfaz intuitiva para la interacción del jugador.        | Logrado    |
+| Representación visual dinámica del tablero y los jugadores según datos del servidor. | Logrado    |
+| Adaptabilidad del cliente a posibles rediseños o mejoras futuras.        | Logrado    |
+| Implementación de salas para gestionar partidas independientes.          | Logrado    |
+| Uso adecuado de clases, objetos JSON y patrones de diseño.               | Logrado    |
+| Código modular y bien estructurado que facilite la escalabilidad.        | Logrado    |
 
 ## Objetivos no logrados 
 
-•  Implementación de ataques entre jugadores con reglas de distancia
-•  Implementación de casillas de escondite con normas de posicionamiento
-adecuadas.  
-•   Manejo de desconexiones y reconexiones de jugadores sin afectar la partida.
-•  Implementación de eventos de juego: desplazamiento, rotación y disparo.
-•  Control centralizado del estado del juego en el servidor.
-•  Compartición eficiente de datos del mapa entre todos los clientes
-•  Manejo de finalización de partidas y asignación de ganadores
-•  Refactorización del cliente para adaptarlo a Angular
-•  Implementación de servicios y componentes en Angular para la gestión del juego.
+| Objetivo                                                                 | Estado     |
+|--------------------------------------------------------------------------|------------|
+| Implementación de ataques entre jugadores con reglas de distancia.       | No logrado |
+| Implementación de casillas de escondite con normas de posicionamiento adecuadas. | No logrado |
+| Manejo de desconexiones y reconexiones de jugadores sin afectar la partida. | No logrado |
+| Implementación de eventos de juego: desplazamiento, rotación y disparo.  | No logrado |
+| Control centralizado del estado del juego en el servidor.                | No logrado |
+| Compartición eficiente de datos del mapa entre todos los clientes.       | No logrado |
+| Manejo de finalización de partidas y asignación de ganadores.            | No logrado |
+| Refactorización del cliente para adaptarlo a Angular.                    | No logrado |
+| Implementación de servicios y componentes en Angular para la gestión del juego. | No logrado |
 
 No he sido capaz de distinguir la informacion de un jugador a otro para poder tratarla de forma individual y que en el caso de que le diese a girar girarse un jugador, cuando le daba a girar desde cualquier jugador los datos que trataba siempre eran los del mismo jugador 
