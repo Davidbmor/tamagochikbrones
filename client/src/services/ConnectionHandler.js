@@ -6,10 +6,13 @@ export const ConnectionHandler = {
     socket: null,
     url: null,
     controller: null,
+
     init: (url, controller, onConnectedCallBack, onDisconnectedCallBack) => {
         ConnectionHandler.controller = controller;
-        let { socket } = ConnectionHandler; 
-        socket = io(url);
+        ConnectionHandler.socket = io(url);
+
+        const socket  = ConnectionHandler.socket;
+
         socket.onAny((message, payload) => {
             console.log("Esta llegando: ");
             console.log(payload);

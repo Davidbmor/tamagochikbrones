@@ -5,23 +5,23 @@ import { AnyTxtRecord } from 'dns';
 
 export class ServerService {
     private io: Server<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, any> | null;
-    private active : boolean;
+    private active: boolean;
     static messages = {
         out: {
             new_player: "NEW_PLAYER"
-        } 
+        }
     }
 
     public inputMessage = [
-            {
-                type: "HELLO",
-                do: this.doHello
-            },
-            {
-                type: "BYE",
-                do: this.doBye
-            }
-        ];
+        {
+            type: "ROTATE",
+            do: this.rotate
+        },
+        {
+            type: "BYE",
+            do: this.doBye
+        }
+    ];
 
     private static instance: ServerService;
     private constructor() {
@@ -49,8 +49,8 @@ export class ServerService {
         this.io.on('connection', (socket) => {
             socket.emit("connectionStatus", { status: true });
             GameService.getInstance().addPlayer(GameService.getInstance().buildPlayer(socket));
-            
-            socket.on("message", (data)=>{
+
+            socket.on("message", (data) => {
                 const doType = this.inputMessage.find(item => item.type == data.type);
                 if (doType !== undefined) {
                     doType.do(data);
@@ -60,21 +60,23 @@ export class ServerService {
             socket.on('disconnect', () => {
                 console.log('Un cliente se ha desconectado:', socket.id);
             });
+            socket.on('ROTATE', (data) => {
+                console.log('Esta girando:', socket.id, data);
+            });
         });
     }
 
-    public addPlayerToRoom(player : Socket, room: String) {
+    public addPlayerToRoom(player: Socket, room: String) {
         player.join(room.toString());
-        
     }
 
-    public sendMessage(room: String |null ,type: String, content: any) {
+    public sendMessage(room: String | null, type: String, content: any) {
         console.log(content);
-        if (this.active && this.io!=null) {
+        if (this.active && this.io != null) {
             if (room != null) {
-                    this.io?.to(room.toString()).emit("message", {
-                        type, content
-                    })
+                this.io?.to(room.toString()).emit("message", {
+                    type, content
+                })
             }
         }
     }
@@ -95,5 +97,11 @@ export class ServerService {
     private doBye(data: String) {
         console.log("Adios");
         console.log(data);
+    }
+
+    private rotate(data: any) {
+        console.log("Rotando");
+        console.log(data);
+
     }
 }
